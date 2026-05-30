@@ -1,0 +1,18 @@
+# Visual Studio
+.vs/
+bin/
+obj/
+*.user
+
+# Node (falls ein lokaler Server genutzt wird)
+node_modules/
+
+# Portable Node-Runtime (nur lokal zum Syntax-Checken)
+.tools/
+
+# Claude Code lokale Einstellungen (maschinenspezifisch, nicht teilen)
+.claude/
+
+# OS
+Thumbs.db
+.DS_Store

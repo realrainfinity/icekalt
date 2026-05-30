@@ -1,0 +1,334 @@
+:root {
+  --bg: #0b1220;
+  --surface: #121a2b;
+  --surface-2: #1b2740;
+  --text: #e8eef7;
+  --text-dim: #9fb0c8;
+  --primary: #22b8cf;
+  --primary-ink: #06303a;
+  --danger: #ef5350;
+  --ok: #51cf66;
+  --border: #25324d;
+  --radius: 14px;
+  --tabbar-h: 64px;
+  --header-h: 56px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f3f6fb;
+    --surface: #ffffff;
+    --surface-2: #eef2f8;
+    --text: #14202e;
+    --text-dim: #5a6b80;
+    --primary: #0e7490;
+    --primary-ink: #ffffff;
+    --border: #d9e1ec;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
+}
+
+/* ---- Header ---- */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: calc(var(--header-h) + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.app-header h1 { font-size: 1.25rem; margin: 0; font-weight: 700; }
+
+/* ---- Main ---- */
+.app-main {
+  padding: 14px 14px calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 24px);
+  min-height: calc(100dvh - var(--header-h));
+}
+
+/* ---- Tabbar ---- */
+.tabbar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 20;
+  height: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+.tab {
+  border: 0;
+  background: transparent;
+  color: var(--text-dim);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font: inherit;
+  cursor: pointer;
+}
+.tab-icon { font-size: 1.4rem; line-height: 1; }
+.tab-label { font-size: 0.72rem; }
+.tab.active { color: var(--primary); }
+
+/* ---- Cards / Lists ---- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+.list { display: flex; flex-direction: column; gap: 10px; }
+
+.recipe-card { display: flex; gap: 12px; align-items: center; }
+.recipe-thumb {
+  width: 64px; height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: var(--surface-2);
+  flex: 0 0 auto;
+}
+.recipe-info { min-width: 0; flex: 1; }
+.recipe-info h3 { margin: 0 0 2px; font-size: 1rem; }
+.recipe-info p { margin: 0; color: var(--text-dim); font-size: 0.82rem; }
+
+/* Koch-Button auf der Rezeptkarte */
+.cook-btn {
+  flex: 0 0 auto;
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.cook-btn:active { background: var(--primary); }
+
+/* Koch-Modal: erwartete Menge + Schieberegler */
+.cook-expected {
+  text-align: center;
+  background: var(--surface-2);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+.cook-expected-val { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+.cook-slider-val { text-align: center; font-size: 1.5rem; font-weight: 800; }
+input[type=range] { width: 100%; accent-color: var(--primary); height: 32px; }
+
+/* Zubereitungs-Übersicht (abhakbar) */
+.prep-card { background: var(--surface-2); border-radius: var(--radius); padding: 12px; margin-top: 12px; }
+.prep-head { margin-bottom: 10px; }
+.prep-title { font-size: 1.2rem; font-weight: 800; }
+.prep-list { display: flex; flex-direction: column; gap: 2px; }
+.prep-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 8px;
+  border-radius: 10px;
+  background: var(--surface);
+  cursor: pointer;
+}
+.prep-row input { width: 22px; height: 22px; flex: 0 0 auto; accent-color: var(--primary); }
+.prep-amt { font-size: 1.15rem; font-weight: 800; min-width: 72px; }
+.prep-name { font-size: 1.05rem; }
+.prep-row.done { opacity: 0.45; }
+.prep-row.done .prep-name { text-decoration: line-through; }
+.prep-note { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+
+.row { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.muted { color: var(--text-dim); font-size: 0.85rem; }
+.empty { text-align: center; color: var(--text-dim); padding: 48px 16px; }
+
+/* ---- Buttons ---- */
+.btn {
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font: inherit;
+  cursor: pointer;
+}
+.btn.primary { background: var(--primary); color: var(--primary-ink); border-color: transparent; font-weight: 600; }
+.btn.danger { color: var(--danger); }
+.btn.block { width: 100%; }
+.btn-row { display: flex; gap: 10px; margin-top: 8px; }
+
+.fab {
+  position: fixed;
+  right: 18px;
+  bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 16px);
+  z-index: 21;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--primary);
+  color: var(--primary-ink);
+  font-size: 1.8rem;
+  line-height: 1;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+  cursor: pointer;
+}
+
+/* ---- Forms ---- */
+label { display: block; font-size: 0.82rem; color: var(--text-dim); margin: 10px 0 4px; }
+input, select, textarea {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  padding: 11px;
+  font: inherit;
+}
+textarea { resize: vertical; min-height: 64px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* Checkbox-Zeile (z. B. Milchprodukt-Schalter im Nährwert-Helfer) */
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 0;
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.check-row input { width: auto; margin: 0; flex: 0 0 auto; }
+
+/* ---- Balance summary ---- */
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stat {
+  background: var(--surface-2);
+  border-radius: 10px;
+  padding: 10px;
+}
+.stat .k { font-size: 0.72rem; color: var(--text-dim); }
+.stat .v { font-size: 1.05rem; font-weight: 700; }
+.stat .t { font-size: 0.68rem; color: var(--text-dim); margin-top: 2px; }
+
+/* Ampel-Bewertung gegen Zielbereich */
+.stat.ok   { box-shadow: inset 3px 0 0 var(--ok); }
+.stat.low  { box-shadow: inset 3px 0 0 #ffa94d; }
+.stat.high { box-shadow: inset 3px 0 0 var(--danger); }
+.stat.low .v  { color: #ffa94d; }
+.stat.high .v { color: var(--danger); }
+
+a { color: var(--primary); }
+
+/* ---- Speisetemperatur-Panel ---- */
+.serve-panel {
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.serve-title { font-size: 0.78rem; color: var(--text-dim); margin-bottom: 8px; }
+.serve-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.serve-cell {
+  text-align: center;
+  padding: 8px 4px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.serve-cell.is-optimal {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 14%, var(--surface));
+}
+.serve-lbl { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: .04em; }
+.serve-temp { font-size: 1.25rem; font-weight: 800; margin: 2px 0; }
+.serve-cell.is-optimal .serve-temp { color: var(--primary); }
+.serve-frac { font-size: 0.68rem; color: var(--text-dim); }
+.serve-foot { font-size: 0.72rem; text-align: center; margin-top: 8px; }
+
+/* ---- Bilanz-Balkengrafik ---- */
+.barchart { margin: 4px 0 12px; }
+.barchart-plot {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 120px;
+  padding: 0 2px;
+}
+.bar-col {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+.bar-fill {
+  width: 100%;
+  min-height: 3px;
+  border-radius: 4px 4px 0 0;
+  background: var(--text-dim);
+  transition: height .15s ease;
+}
+.bar-fill.ok   { background: var(--ok); }
+.bar-fill.warn { background: #ffd43b; }
+.bar-fill.bad  { background: var(--danger); }
+.bar-fill.none { background: var(--text-dim); }
+/* Hilfslinien: Optimum bei 70 %, Bereichsgrenzen bei 60 % und 80 % Höhe. */
+.barchart-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+.barchart-line.optline { bottom: 70%; border-top: 2px dashed var(--ok); }
+.barchart-line.minline { bottom: 60%; border-top: 1px dashed #ffe066; }
+.barchart-line.maxline { bottom: 80%; border-top: 1px dashed #ffe066; }
+.barchart-labels {
+  display: flex;
+  gap: 6px;
+  padding: 4px 2px 0;
+}
+.bar-cell { flex: 1; text-align: center; }
+.bar-val { font-size: 0.8rem; font-weight: 700; }
+.bar-lbl { font-size: 0.68rem; color: var(--text-dim); }
+
+/* ---- Modal ---- */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(0,0,0,.5);
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.modal {
+  background: var(--surface);
+  width: 100%;
+  max-width: 560px;
+  max-height: 92dvh;
+  overflow-y: auto;
+  border-radius: 18px 18px 0 0;
+  padding: 18px 16px calc(env(safe-area-inset-bottom) + 18px);
+}
+.modal h2 { margin: 0 0 8px; }
+
+.tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text-dim);
+}

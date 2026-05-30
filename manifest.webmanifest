@@ -1,0 +1,26 @@
+{
+  "name": "ICEkalt – Eis-Bilanzierung",
+  "short_name": "ICEkalt",
+  "description": "Rezepte und Zutaten für Speiseeis bilanzieren – Fett, Zucker, Trockenmasse, POD und PAC.",
+  "lang": "de",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1220",
+  "theme_color": "#0e7490",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

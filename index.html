@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0e7490" />
+  <title>ICEkalt</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/icon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1 id="view-title">Rezepte</h1>
+  </header>
+
+  <main id="app" class="app-main"><!-- Views werden hier gerendert --></main>
+
+  <nav class="tabbar" role="navigation">
+    <button class="tab" data-view="recipes" aria-label="Rezepte">
+      <span class="tab-icon">🍨</span>
+      <span class="tab-label">Rezepte</span>
+    </button>
+    <button class="tab" data-view="ingredients" aria-label="Zutaten">
+      <span class="tab-icon">🥛</span>
+      <span class="tab-label">Zutaten</span>
+    </button>
+    <button class="tab" data-view="settings" aria-label="Einstellungen">
+      <span class="tab-icon">⚙️</span>
+      <span class="tab-label">Einstellungen</span>
+    </button>
+  </nav>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

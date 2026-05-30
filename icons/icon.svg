@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22b8cf"/>
+      <stop offset="1" stop-color="#0e7490"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <!-- Waffel -->
+  <path d="M176 232h160l-80 168z" fill="#f4c77a"/>
+  <path d="M196 250l120 0M210 282l92 0M226 314l60 0" stroke="#caa05a" stroke-width="6" fill="none"/>
+  <!-- Eiskugeln -->
+  <circle cx="206" cy="196" r="58" fill="#fff"/>
+  <circle cx="306" cy="196" r="58" fill="#ffd9e8"/>
+  <circle cx="256" cy="150" r="62" fill="#fef3c7"/>
+</svg>
